@@ -13,6 +13,7 @@ public class MyConfig extends WebConfigurer {
         registry.addViewController("backend/login","/showLogin");
 
         registry.addViewController("backend/main","/showMain");
+
     }
 
 }

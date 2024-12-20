@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../20240904/spring/annotation/annotation.iml" filepath="$PROJECT_DIR$/../20240904/spring/annotation/annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../20240904/spring/aop/aop.iml" filepath="$PROJECT_DIR$/../20240904/spring/aop/aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../20240904/spring/ioc/ioc.iml" filepath="$PROJECT_DIR$/../20240904/spring/ioc/ioc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../20240904/spring/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/../20240904/spring/mybatis/mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/nms.iml" filepath="$PROJECT_DIR$/nms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../20240904/spring/springmvc/springmvc.iml" filepath="$PROJECT_DIR$/../20240904/spring/springmvc/springmvc.iml" />
     </modules>
   </component>
 </project>

@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" type="text/css"></link>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script>
+        $(function (){
+            $("#codeImage,#changeCode").click(function (){
+                $("#codeImage").attr("src","${pageContext.request.contextPath}/code/show.do?id"+new Date().getTime());
+            });
+        })
+    </script>
 </head>
 <body>
 <!-- 使用自定义css样式 div-signin 完成元素居中-->
@@ -26,46 +33,47 @@
         </div>
         <div class="panel-body">
             <!-- login form start -->
-            <form action="main.html" class="form-horizontal ccc" method="post">
+            <form action="${pageContext.request.contextPath}/staff/login.do" class="form-horizontal ccc" method="post">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">用户名：</label>
                     <div class="col-sm-9">
-                        <input class="form-control" type="text" placeholder="请输入用户名">
+                        <input class="form-control" type="text"  name="loginName"  placeholder="请输入用户名">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
                     <div class="col-sm-9">
-                        <input class="form-control" type="password" placeholder="请输入密码">
+                        <input class="form-control" type="password" name="password" placeholder="请输入密码">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">身&nbsp;&nbsp;&nbsp;&nbsp;份：</label>
                     <div class="col-sm-9">
-                        <select class="form-control">
-                            <option>-请选择身份-</option>
-                            <option>系统管理员</option>
-                            <option>普通管理员</option>
+                        <select class="form-control"  name="role" >
+                            <option value="-1">-请选择身份-</option>
+                            <option value="1001">系统管理员</option>
+                            <option value="1002">普通管理员</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">验证码：</label>
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" placeholder="请输入验证码">
+                        <input class="form-control" type="text"  name="code"  placeholder="请输入验证码">
                     </div>
                     <div class="col-sm-2">
                         <!-- 验证码图片加载（需引入验证码文件）图像高度经过测试，建议不要修改 -->
-                        <img class="img-rounded" src="images/image.jpg" alt="验证码" style="height: 32px; width: 70px;"/>
+                        <img id="codeImage" class="img-rounded" src="${pageContext.request.contextPath}/code/show.do"
+                             alt="验证码" style="height: 32px; width: 70px;"/>
                     </div>
                     <div class="col-sm-2">
-                        <button type="button" class="btn btn-link">看不清</button>
+                        <button id="changeCode" type="button" class="btn btn-link">看不清</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9  col-sm-offset-3 padding-left-0">
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-link btn-block">忘记密码？</button>
+                            <button type="button" class="btn btn-link btn-block" style="color:red;">${loginMsg}</button>
                         </div>
                         <div class="col-sm-4">
                             <button type="reset" class="btn btn-primary btn-block">重&nbsp;&nbsp;置</button>

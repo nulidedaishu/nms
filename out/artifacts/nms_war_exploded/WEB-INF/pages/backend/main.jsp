@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.itany.nmms.entity.Staff" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 2024/4/13
@@ -8,32 +8,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>backend</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstarp/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstarp/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css"/>
     <script src="${pageContext.request.contextPath}/js/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="${pageContext.request.contextPath}/bootstarp/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${pageContext.request.contextPath}/bootstarp/js/bootstrap.js" type="text/javascript"
+            charset="utf-8"></script>
     <script src="${pageContext.request.contextPath}/js/userSetting.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             // 点击切换页面
-            $("#user-set").click(function() {
-                $("#frame-id").attr("src", "userManager.html");
+            $("#user-set").click(function () {
+                $("#frame-id").attr("src", "${pageContext.request.contextPath}/user/findAll.do");
             });
-            $("#product-set").click(function() {
-                $("#frame-id").attr("src", "productManager.html");
+            $("#product-set").click(function () {
+                $("#frame-id").attr("src", "${pageContext.request.contextPath}/product/findAll.do");
             });
-            $("#product-type-set").click(function() {
-                $("#frame-id").attr("src", "productTypeManager.html");
+            $("#product-type-set").click(function () {
+                $("#frame-id").attr("src", "${pageContext.request.contextPath}/type/findAll.do");
             });
-            $("#manager-set").click(function() {
-                $("#frame-id").attr("src", "staffManager.html");
+            $("#manager-set").click(function () {
+                $("#frame-id").attr("src", "${pageContext.request.contextPath}/staff/findAll.do");
             });
-            $("#dept-set").click(function() {
-                $("#frame-id").attr("src", "deptManager.html");
+            $("#dept-set").click(function () {
+                $("#frame-id").attr("src", "${pageContext.request.contextPath}/dept/findAll.do");
+            });
+            $(".exit").click(function () {
+                location.href = "${pageContext.request.contextPath}/staff/login.do";
             });
         });
     </script>
@@ -47,9 +51,11 @@
             <div class="container head-cc">
                 <p>在线商城<span>后台管理系统</span></p>
                 <div class="welcome">
+                    <% if (session.getAttribute("staff") != null) {%>
                     <div class="left">欢迎您：</div>
-                    <div class="right">xxx</div>
+                    <div class="right">${staff.staffName}</div>
                     <div class="exit">退出</div>
+                    <% }%>
                 </div>
             </div>
         </div>
@@ -69,16 +75,21 @@
                         <li class="list-group-item" name="departmentSet" id="dept-set">
                             <i class="glyphicon glyphicon-modal-window"></i> &nbsp;部门管理
                         </li>
+                        <% if (session.getAttribute("staff") != null) {
+                            if ("1001".equals(((Staff) session.getAttribute("staff")).getRole())) { %>
                         <li class="list-group-item" name="adminSet" id="manager-set">
                             <i class="glyphicon glyphicon-globe"></i> &nbsp;管理员管理
                         </li>
+                        <% }
+                        }%>
                         <li class="list-group-item" name="userInfo" id="user-set">
                             <i class="glyphicon glyphicon-user"></i> &nbsp;用户管理
                         </li>
                     </ul>
                 </div>
                 <div class="col-xs-9" id="userPanel">
-                    <iframe id="frame-id" src="productTypeManager.html" width="100%" height="100%" frameborder="0" scrolling="no"/>
+                    <iframe id="frame-id" src="${pageContext.request.contextPath}/type/findAll.do" width="100%"
+                            height="100%" frameborder="0" scrolling="no"/>
                 </div>
 
             </div>

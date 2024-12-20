@@ -1,7 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+    <properties resource="dataSource.properties"/>
+
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.itany.nmms.entity"/>
+    </typeAliases>
 
     <plugins>
         <!-- 配置mybatis分页插件 -->
@@ -35,4 +46,23 @@
         </plugin>
     </plugins>
 
+    <environments default="nmms">
+        <environment id="nmms">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/itany/nmms/mapper/StaffMapper.xml"/>
+        <mapper resource="com/itany/nmms/mapper/ProductTypeMapper.xml"/>
+        <mapper resource="com/itany/nmms/mapper/ProductMapper.xml"/>
+        <mapper resource="com/itany/nmms/mapper/DeptMapper.xml"/>
+        <mapper resource="com/itany/nmms/mapper/SequenceMapper.xml"/>
+        <mapper resource="com/itany/nmms/mapper/UserMapper.xml"/>
+    </mappers>
 </configuration>
